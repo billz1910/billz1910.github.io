@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betapa Beruntungnya Aku</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6dd5fa, #fbc2eb);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+        }
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #444;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #ff6b6b, #fbc2eb);
+            color: #fff;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        .button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+        .effect-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .effect {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 2s ease-out forwards;
+        }
+        @keyframes float {
+            0% {
+                transform: scale(0.5) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5) translateY(-200px);
+                opacity: 0;
+            }
+        }
+        .heart {
+            background: none;
+            width: 20px;
+            height: 20px;
+            transform: rotate(-45deg);
+            position: relative;
+        }
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            border-radius: 50%;
+        }
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+        .heart:after {
+            left: 10px;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>For You Assyifa Davina Ramadhani💗</h1>
+        <p id="message">
+          aku cuma mau bilang,
+      kalo aku beruntung banget punya kamu. kamu itu rumah, tempat aku merasa tenang dan dicintai. terima kasih karena udah selalu ada. Kamu itu segalanya buat aku.
+            i love u sayang, i love u to the moon and back, i love u all the way to heaved, i love more than u even know, i love u more than can even say, i love u more than the moon shines, i love u more than the heat of the sun, i love u more than the atoms in the world, i love u more than anything
+        </p>
+        <button class="button" onclick="showMessage()">Klik ini ya sayangg</button>
+        <div class="effect-container" id="effectContainer"></div>
+        <audio id="backgroundMusic" src="https://audio.jukehost.co.uk/Pd4MAXvBXFybaRSkvE17GdfloApIDtvx"></audio>
+    </div>
+
+    <script>
+        function showMessage() {
+            const message = document.getElementById('message');
+            const effectContainer = document.getElementById('effectContainer');
+            const music = document.getElementById('backgroundMusic');
+
+            
+            if (message.style.display === 'none' || message.style.display === '') {
+                message.style.display = 'block';
+                music.play(); // Putar lagu
+            } else {
+                message.style.display = 'none';
+                music.pause(); // Hentikan lagu
+                music.currentTime = 0; // Reset lagu ke awal
+            }
+
+            
+            for (let i = 0; i < 20; i++) {
+                const effect = document.createElement('div');
+                effect.className = 'effect heart';
+                effect.style.left = Math.random() * 100 + '%';
+                effect.style.animationDelay = `${Math.random() * 0.5}s`;
+                effectContainer.appendChild(effect);
+
+                
+                effect.addEventListener('animationend', () => {
+                    effect.remove();
+                });
+            }
+        }
+    </script>
+</body>
+</html>
